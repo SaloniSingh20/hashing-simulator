@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hashing Visualizer — Open Hashing & Probing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🔐</div>
+      <div class="title">Hash Table Simulator</div>
+    </div>
+
+      <div class="top-controls">
+      <label class="small">Size
+        <input id="tableSize" type="number" min="3" value="10">
+      </label>
+
+      <label class="small">Mode
+        <select id="modeSelect">
+          <option value="linear">Linear</option>
+          <option value="quad">Quadratic</option>
+          <option value="dbl">Double</option>
+          <option value="chain">Separate Chaining</option>
+        </select>
+      </label>
+
+  <button id="initBtn" class="btn primary">Create</button>
+  <div class="break"></div>
+
+      <label class="small">Primary (k=key, n=tableSize)
+        <input id="hashPrimary" type="text" value="k % n" title="Use k for key and n for tableSize" style="min-width:160px">
+      </label>
+      <label class="small hash-secondary" id="hashSecondaryLabel">Secondary (k=key, n=tableSize)
+        <input id="hashSecondary" type="text" value="1 + (k % (n - 1))" title="Use k for key and n for tableSize" style="min-width:140px">
+      </label>
+
+  <!-- bulkKeys removed; Prepare will prompt if needed -->
+      <div class="top-row-keys">
+        <input id="singleKey" class="key-input" placeholder="enter key">
+        <button id="insertKeyBtn" class="btn success">Insert</button>
+        <button id="searchKeyBtn" class="btn info">Search</button>
+        <button id="deleteKeyBtn" class="btn warn">Delete</button>
+      </div>
+      <button id="resetBtn" class="btn danger">Clear</button>
+
+      <button id="enqueueBtn" class="btn">Prepare</button>
+    </div>
+  </header>
+
+  <div class="notice" id="noticeBar">Created hash table with size 10 and mode linear</div>
+
+  <main>
+    <section class="visuals three-col">
+      <div class="visual card" id="singleViz">
+        <h3 id="singleTitle">Hash Table</h3>
+        <div class="table" id="singleTable"></div>
+      </div>
+
+      <div class="visual card" id="stepsViz">
+        <h3>🔍 Execution Steps</h3>
+        <div id="stepsColumn" class="steps-col">
+          <ol id="stepsList"></ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Local visualization — expressions are evaluated locally in your browser.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
